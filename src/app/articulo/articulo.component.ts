@@ -30,7 +30,7 @@ export class ArticuloComponent implements OnInit {
   constructor(
     private router: Router,
     private _location: Location,
-    private pozoService: PozoService,
+    public pozoService: PozoService,
     private necesidadService: NecesidadService,
     private articuloService: ArticuloService,
     public intervaloService: IntervaloService

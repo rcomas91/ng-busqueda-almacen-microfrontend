@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class ArticuloService  {
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'})
-  private UrlEndPoint:string='https://localhost:44387/api/recursos';
+  private UrlEndPoint:string='https://localhost:8080/api/recursos';
   constructor(private http:HttpClient) { 
 
   }

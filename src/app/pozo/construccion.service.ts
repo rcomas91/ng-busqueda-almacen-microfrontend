@@ -8,7 +8,7 @@ import {formatDate,registerLocaleData} from '@angular/common'
 import { Construccion } from './Construccion';
 @Injectable()
 export class ConstruccionService  {
-  private UrlEndPoint:string='https://localhost:44387/api/construccions';
+  private UrlEndPoint:string='https://localhost:8080/api/construccions';
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'})
   
   constructor(private http:HttpClient) { }

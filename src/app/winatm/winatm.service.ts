@@ -9,7 +9,7 @@ import { SomeModel } from './SomeModel';
 export class WinatmService {
 
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'})
-  private UrlEndPoint:string='https://localhost:44387/api/winatm';
+  private UrlEndPoint:string='https://localhost:8080/api/winatm';
 
 
   constructor(private http:HttpClient) { 

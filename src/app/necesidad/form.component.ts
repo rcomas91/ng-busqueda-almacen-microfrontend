@@ -12,8 +12,8 @@ import {map} from 'rxjs/operators';
   templateUrl: './form.component.html',
 })
 export class FormComponent implements OnInit {
-  private necesidad:Necesidad=new Necesidad();
-  private listaArticulos:Articulo[];
+  public necesidad:Necesidad=new Necesidad();
+  public listaArticulos:Articulo[];
   
   private titulo:string="Añadir necesidad"
 
@@ -46,7 +46,7 @@ export class FormComponent implements OnInit {
 
   public create():void{
     this.necesidadService.create(this.necesidad).subscribe(
-response => this.router.navigate(['/necesidades'])
+   response => this.router.navigate(['/necesidades'])
 
     )
   }
