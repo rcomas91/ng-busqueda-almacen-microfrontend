@@ -8,7 +8,7 @@ import {formatDate,registerLocaleData} from '@angular/common'
 import { Construccion } from './Construccion';
 @Injectable()
 export class PozoService  {
-  private UrlEndPoint:string='https://localhost:8080/api/pozos';
+  private UrlEndPoint:string='https://10.7.8.114:8080/api/pozos';
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'})
   construccion:Construccion;
   pozo:Pozo;

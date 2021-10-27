@@ -7,7 +7,7 @@ import {map} from 'rxjs/operators';
 import {formatDate,registerLocaleData} from '@angular/common'
 @Injectable()
 export class NecesidadService  {
-  private UrlEndPoint:string='https://localhost:8080/api/necesidades';
+  private UrlEndPoint:string='https://10.7.8.114:8080/api/necesidades';
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'})
 
 

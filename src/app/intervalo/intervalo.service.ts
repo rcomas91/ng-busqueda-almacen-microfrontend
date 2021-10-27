@@ -12,7 +12,7 @@ export class IntervaloService {
   intervalo:Intervalo;
   constructor(private http:HttpClient) { }
 
-  private UrlEndPoint:string='https://localhost:8080/api/intervalos';
+  private UrlEndPoint:string='https://10.7.8.114:8080/api/intervalos';
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'})
 
   
