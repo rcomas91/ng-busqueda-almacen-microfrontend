@@ -38,9 +38,14 @@
     </tbody>
       </table>
  -->
-<h2>Necesidades en los Pozos</h2>
- <div *ngIf="dataSource?.data.length>0;else noRecord" class="example-container mat-elevation-z8">
-    <mat-table  #table [dataSource]="dataSource" matSort matTableExporter #exporter="matTableExporter">
+<h2 style="display: flex; justify-content: center; align-items: center">Necesidades en los Pozos</h2>
+
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+</mat-form-field>
+ <div  class="example-container mat-elevation-z8">
+
+    <mat-table  #table [dataSource]="dataSource"  matTableExporter #exporter="matTableExporter" matSort>
 
 
    <!--  Columna IntervaloId-->
@@ -142,7 +147,7 @@
         >
         <mat-cell *matCellDef="let row">
           <button mat-raised-button color="warn" (click)="delete(row.id)"focusable="false" >
-              Borrar
+             <mat-icon>delete</mat-icon> Borrar
               </button>
         </mat-cell>
 
@@ -154,22 +159,29 @@
         class="encabezado"
       ></mat-header-row>
       <mat-row [ngClass]="{ 'marked': (row.existencia-row.cantidad) <0}" *matRowDef="let row; columns: displayedColumns"></mat-row>
+      
     </mat-table>
-    <button mat-raised-button (click)="goBack()">Volver</button>
+    <mat-card *ngIf="isLoading"
+    style="display: flex; justify-content: center; align-items: center">
+    <mat-progress-spinner
+     color="primary"
+     mode="indeterminate">
+     
+    </mat-progress-spinner>
+    </mat-card>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="15" [showFirstLastButtons]></mat-paginator>
 
-    <button mat-raised-button color="primary"
-    (click)="exporter.exportTable('xlsx', {fileName:'table'})">Export to xlsx</button>
+
+   
 
   </div>
 
-  <ng-template #noRecord>
-    <div>
-      <h3 style="display: flex; justify-content: center; align-items: center">  No hay registros en la BD.</h3>
 
-     </div>
-    </ng-template>
+  <button mat-raised-button (click)="goBack()">     <mat-icon>keyboard_return</mat-icon>Volver</button>
 
-   
+  <button mat-raised-button color="primary"
+  (click)="exporter.exportTable('xlsx', {fileName:'Necesidades de los Pozo'})"><mat-icon> import_export</mat-icon>Export to xlsx</button>
   <!-- <div>
     <button  [routerLink]="['/articulos/form']"  mat-raised-button color="accent">Adicionar Recurso</button>
 
@@ -178,12 +190,5 @@
   <span >Gran Total:{{sum|currency}}</span>
 
         -->
-        <mat-card *ngIf="isLoading"
-        style="display: flex; justify-content: center; align-items: center">
-        <mat-progress-spinner
-         color="primary"
-         mode="indeterminate">
-        </mat-progress-spinner>
-        </mat-card>
-
+      
 

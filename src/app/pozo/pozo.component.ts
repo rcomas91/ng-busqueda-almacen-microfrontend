@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatPaginator, MatTable, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTable, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Construccion } from './Construccion';
@@ -15,6 +15,8 @@ import { PozoService } from './pozo.service';
 })
 export class PozoComponent implements OnInit {
     @ViewChild(MatTable,{static: true}) table: MatTable<Pozo>;
+    @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;
+    @ViewChild(MatSort,{static:true}) sort: MatSort;
   pozos: Pozo[];
   isLoading = true;
 
@@ -67,6 +69,8 @@ export class PozoComponent implements OnInit {
             this.isLoading = false;
     this.dataSource = new MatTableDataSource();
     this.dataSource.data = x;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort=this.sort;
     console.log(this.dataSource.data);
   },
   error => {
@@ -82,8 +86,9 @@ VerConst(construccion:Construccion,pozo:Pozo){
     this.pozoService.construccion=construccion;
     this.pozoService.pozo=pozo;
     this.toastr.info(
-      "Comienza por agregar los intervalos del pozo en el botón Adicionar intervalo!",
-      "Atento!"
+      
+      'Comienza por agregar los intervalos del pozo en el botón Adicionar intervalo!',
+      'Atento!',    {closeButton		:true,tapToDismiss	:false}
     );
   }
 
@@ -91,20 +96,26 @@ VerConst(construccion:Construccion,pozo:Pozo){
 
 
   AdicionarConst(id:number){
+ 
   this.formGroup.controls['PozoId'].setValue(id)
     let int: Construccion = Object.assign({}, this.formGroup.value);
     console.table(int);
      this.constService.create(int).subscribe(int=>this.onSaveSuccess(),error=>console.error(error));
-
+  
+     
      this.toastr.info(
       "Acaba de agregar una construcción a este pozo pulse en ver construcción para comenzar a usarla!",
-      "Atento!"
+      "Atento!",{progressBar:true,progressAnimation	:'increasing'}
     );
 
   }
   onSaveSuccess() {
-    this.renderDataTable()
-    this.router.navigate(["/pozos"]);
+    setTimeout(() => {
+      this.isLoading=true;
+      this.renderDataTable()
+      this.router.navigate(["/pozos"]);
+    }, 6000);
+
   }
 
 

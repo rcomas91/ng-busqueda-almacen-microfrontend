@@ -3,13 +3,15 @@
 } */
 
 .example-card{
-     width: calc(20% + 10px)!important;
+     width: calc(40% + 10px)!important;
      position: relative;
 }
-span {
-    margin-left:90%;
-    font-size: large;
-    }
+
+mat-expansion-panel{
+    width: 98% !important;
+    
+}
+
 
     
     .texto-encima{
@@ -50,4 +52,27 @@ span {
         transform: translate(-50%, -50%);
     }
     
- 
+    .example-fill-remaining-space {
+        /* This fills the remaining space, by using flexbox. 
+           Every toolbar row uses a flexbox row layout. */
+        flex: 1 1 auto;
+      }
+
+      .example-card-image{
+        width: calc(5% + 10px)!important;
+        position: relative;
+   }
+
+   .splitscreen {
+    display:flex;
+}
+.splitscreen .left {
+    flex: 1;
+    margin-top: 20px;
+}
+.splitscreen .right {
+    flex: 1;
+    margin-top: 20px;
+
+}
+   
