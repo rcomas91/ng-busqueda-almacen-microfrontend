@@ -23,9 +23,9 @@ export class IntervaloComponent implements OnInit {
 intervalos: Intervalo[];
 cont:number;
   constructor(private servicioService:ServicioService,private _location:Location,private router:Router,private intervaloService:IntervaloService,public pozoService:PozoService) { }
-  displayedColumns = ['camisa','precioC','barrena','precioB','longitud','PrecioTotal','Editar','Borrar', 'Recursos'];
+  displayedColumns = ['barrena','precioB','longitud','PrecioTotal','Editar','Borrar', 'Recursos'];
   dataSource: any;
-  title="Intervalos del pozo "
+  title="Secciones del pozo "
   sum:number;
   sumBarrenas:number=0;
   sumCasingYacces=0;
@@ -44,7 +44,7 @@ cont:number;
   }
 
   calcularMonto(int:Intervalo):number{
-    let sum=int.precioC+int.precioB;
+    let sum=int.precioB;
     int.recursos.forEach((item:Articulo)=> {
       sum+=item.precioCUP*item.cantidad;
 
@@ -55,7 +55,7 @@ cont:number;
 
 
 
-  
+
   calcularMontoCyA(int:Intervalo){
     let sum=0;
     int.recursos.forEach((item:Articulo)=> {
@@ -104,7 +104,7 @@ cont:number;
   error => {
     this.isLoading = false;
 
-    console.log('Ocurrió un error al consultar los Intervalos!' + error);
+    console.log('Ocurrió un error al consultar las Secciones!' + error);
   });
 }
 
